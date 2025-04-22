@@ -101,14 +101,14 @@
     </div>
 
 
-
     <script>
         // Word cloud configuration
         const config = {
             words: [
-                "Maximo", "Java", "Docker", "Javascript", "Angular", 
-                "Node", "Jenkins", "MAS", "MIF", "Automation", 
-                "Hosting", "WebSphere", "Deployment" 
+                "Maximo", "Java", "Docker", "Javascript", //
+                "Angular", "Node", "Jenkins", "MAS", //
+                "MIF", "Automation", "Hosting", "WebSphere",
+                "Deployment", "AWS", "Kubernetes", "DB2"
             ],
             minFontSize: 24,
             maxFontSize: 52,
@@ -116,63 +116,70 @@
             rotationRange: 15 // Degrees of rotation possible
         };
 
-         // Randomize the word array
+        // Randomize the word array
         config.words = config.words.sort(() => {
             return 0.5 - Math.random();
         });
 
-        // Manually defined grid-like positions (can be adjusted)
+        // Manually defined grid-like positions (percentages)
         const predefinedPositions = [
             // Row 1
-            [window.innerWidth * 0.0, window.innerHeight * 0.0],
-            [window.innerWidth * 0.25, window.innerHeight * 0.0],
-            [window.innerWidth * 0.5, window.innerHeight * 0.0],
-            [window.innerWidth * 0.75, window.innerHeight * 0.0],
+            [0.0, 0.0],
+            [0.25, 0.0],
+            [0.5, 0.0],
+            [0.75, 0.0],
             
             // Row 2
-            [window.innerWidth * 0.0, window.innerHeight * 0.25],
-            [window.innerWidth * 0.25, window.innerHeight * 0.25],
-            [window.innerWidth * 0.5, window.innerHeight * 0.25],
-            [window.innerWidth * 0.75, window.innerHeight * 0.25],
+            [0.0, 0.25],
+            [0.25, 0.25],
+            [0.5, 0.25],
+            [0.75, 0.25],
             
             // Row 3
-            [window.innerWidth * 0.0, window.innerHeight * 0.5],
-            [window.innerWidth * 0.25, window.innerHeight * 0.5],
-            [window.innerWidth * 0.5, window.innerHeight * 0.5],
-            [window.innerWidth * 0.75, window.innerHeight * 0.5],
+            [0.0, 0.5],
+            [0.25, 0.5],
+            [0.5, 0.5],
+            [0.75, 0.5],
             
             // Row 4
-            [window.innerWidth * 0.0, window.innerHeight * 0.75],
-            [window.innerWidth * 0.25, window.innerHeight * 0.75],
-            [window.innerWidth * 0.5, window.innerHeight * 0.75],
-            [window.innerWidth * 0.75, window.innerHeight * 0.75]
+            [0.0, 0.75],
+            [0.25, 0.75],
+            [0.5, 0.75],
+            [0.75, 0.75]
         ];
-        
 
         const container = document.getElementById('word-cloud-container');
         var centerX = window.innerWidth / 2;
         var centerY = window.innerHeight / 2;
         
+        // Calculate responsive position with min-width of 500px
+        function getResponsivePosition(percentX, percentY) {
+            const minWidth = 500;
+            const effectiveWidth = Math.max(window.innerWidth, minWidth);
+            const posX = percentX * effectiveWidth;
+            const posY = percentY * window.innerHeight;
+            return [posX, posY];
+        }
 
-        var BreakException = {};
         // Create word elements
-        try {
         config.words.forEach((word, index) => {
-            if (index > predefinedPositions.length - 1) {
-                throw BreakException;
-            }
+            if (index >= predefinedPositions.length) return;
+            
             const wordEl = document.createElement('div');
             wordEl.className = 'word';
             wordEl.textContent = word;
             
-            // Put word in grid
-            let left = predefinedPositions[index][0] + 100;
-            let top = predefinedPositions[index][1] + 100;
-            // adjust left and top slightly by a random amount
-            left += Math.floor(Math.random() * 20) - 10;
-            top += Math.floor(Math.random() * 20) - 10;
+            // Get base position from grid
+            const [baseLeft, baseTop] = getResponsivePosition(
+                predefinedPositions[index][0], 
+                predefinedPositions[index][1]
+            );
             
-            // Random font size
+            // Apply base position with small random offset
+            let left = baseLeft + 100 + (Math.floor(Math.random() * 20) - 10);
+            let top = baseTop + 100 + (Math.floor(Math.random() * 20) - 10);
+            
+            // Random font size and weight
             const fontSize = Math.floor(Math.random() * (config.maxFontSize - config.minFontSize + 1)) + config.minFontSize;
             const fontWeight = fontSize > config.maxFontSize * 0.7 ? 600 : (fontSize > config.maxFontSize * 0.4 ? 400 : 300);
             
@@ -183,21 +190,19 @@
             wordEl.style.top = `${top}px`;
             wordEl.style.fontSize = `${fontSize}px`;
             wordEl.style.fontWeight = fontWeight;
-            // Grey color with slight transparency
-            wordEl.style.color = `hsla(0, 0%, 70%, 20)`;            
-            // Store original position
+            wordEl.style.color = `hsla(0, 0%, 70%, 20)`;
+            
+            // Store positions for responsive updates
             wordEl.dataset.originalLeft = left;
             wordEl.dataset.originalTop = top;
+            wordEl.dataset.baseLeft = baseLeft;
+            wordEl.dataset.baseTop = baseTop;
+            wordEl.dataset.positionIndex = index;
             
             container.appendChild(wordEl);
         });
-        }
-        catch (e) {
-            if (e !== BreakException) throw e;
-        }
         
-        
-        //Mouse move interaction
+        // Mouse move interaction
         document.addEventListener('mousemove', (e) => {
             const mouseX = e.clientX;
             const mouseY = e.clientY;
@@ -214,8 +219,8 @@
             // Move each word based on mouse position
             const words = document.querySelectorAll('.word');
             words.forEach(word => {
-                const originalLeft = parseFloat(word.dataset.originalLeft);
-                const originalTop = parseFloat(word.dataset.originalTop);
+                let originalLeft = parseFloat(word.dataset.originalLeft);
+                let originalTop = parseFloat(word.dataset.originalTop);
                 
                 // Calculate distance from mouse to word
                 const wordX = originalLeft + window.scrollX;
@@ -243,6 +248,35 @@
         window.addEventListener('resize', () => {
             centerX = window.innerWidth / 2;
             centerY = window.innerHeight / 2;
+            
+            // Update word positions
+            const words = document.querySelectorAll('.word');
+            words.forEach(word => {
+                if (word.dataset.positionIndex !== undefined) {
+                    const index = parseInt(word.dataset.positionIndex);
+                    const [baseLeft, baseTop] = getResponsivePosition(
+                        predefinedPositions[index][0], 
+                        predefinedPositions[index][1]
+                    );
+                    
+                    // Calculate new position maintaining the original random offset
+                    const offsetX = parseFloat(word.dataset.originalLeft) - parseFloat(word.dataset.baseLeft);
+                    const offsetY = parseFloat(word.dataset.originalTop) - parseFloat(word.dataset.baseTop);
+                    
+                    const newLeft = baseLeft + offsetX;
+                    const newTop = baseTop + offsetY;
+                    
+                    word.style.left = `${newLeft}px`;
+                    word.style.top = `${newTop}px`;
+                    word.dataset.originalLeft = newLeft;
+                    word.dataset.originalTop = newTop;
+                    word.dataset.baseLeft = baseLeft;
+                    word.dataset.baseTop = baseTop;
+                }
+            });
+            
+            // Trigger mousemove to update positions
+            document.dispatchEvent(new Event('mousemove'));
         });
     </script>
 </body>
