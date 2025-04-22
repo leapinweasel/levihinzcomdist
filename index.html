@@ -110,8 +110,8 @@
                 "Node", "Jenkins", "MAS", "MIF", "Automation", 
                 "Hosting", "WebSphere", "Deployment" 
             ],
-            minFontSize: 16,
-            maxFontSize: 60,
+            minFontSize: 24,
+            maxFontSize: 52,
             maxOffset: 50, // Maximum movement distance from mouse
             rotationRange: 15 // Degrees of rotation possible
         };
@@ -131,14 +131,14 @@
             
             // Row 2
             [window.innerWidth * 0.0, window.innerHeight * 0.25],
-//            [window.innerWidth * 0.4, window.innerHeight * 0.4],
-//            [window.innerWidth * 0.6, window.innerHeight * 0.4],
+            [window.innerWidth * 0.25, window.innerHeight * 0.25],
+            [window.innerWidth * 0.5, window.innerHeight * 0.25],
             [window.innerWidth * 0.75, window.innerHeight * 0.25],
             
             // Row 3
             [window.innerWidth * 0.0, window.innerHeight * 0.5],
-//            [window.innerWidth * 0.4, window.innerHeight * 0.6],
- //           [window.innerWidth * 0.6, window.innerHeight * 0.6],
+            [window.innerWidth * 0.25, window.innerHeight * 0.5],
+            [window.innerWidth * 0.5, window.innerHeight * 0.5],
             [window.innerWidth * 0.75, window.innerHeight * 0.5],
             
             // Row 4
@@ -165,17 +165,16 @@
             wordEl.className = 'word';
             wordEl.textContent = word;
             
-            // Random initial position (within safe margins)
-            const left = predefinedPositions[index][0] + 100;
-            const top = predefinedPositions[index][1] + 100;
+            // Put word in grid
+            let left = predefinedPositions[index][0] + 100;
+            let top = predefinedPositions[index][1] + 100;
+            // adjust left and top slightly by a random amount
+            left += Math.floor(Math.random() * 20) - 10;
+            top += Math.floor(Math.random() * 20) - 10;
             
             // Random font size
             const fontSize = Math.floor(Math.random() * (config.maxFontSize - config.minFontSize + 1)) + config.minFontSize;
             const fontWeight = fontSize > config.maxFontSize * 0.7 ? 600 : (fontSize > config.maxFontSize * 0.4 ? 400 : 300);
-
-            // Greyscale color
-            const lightness = Math.floor(Math.random() * (config.maxLightness - config.minLightness + 1)) + config.minLightness;
-            const opacity = (Math.random() * 0.5) + 0.3;
             
             // Random slight rotation
             const rotation = (Math.random() * config.rotationRange * 2) - config.rotationRange;
@@ -184,7 +183,8 @@
             wordEl.style.top = `${top}px`;
             wordEl.style.fontSize = `${fontSize}px`;
             wordEl.style.fontWeight = fontWeight;
-            wordEl.style.color = `hsla(0, 0%, ${lightness}%, ${opacity})`;            
+            // Grey color with slight transparency
+            wordEl.style.color = `hsla(0, 0%, 70%, 20)`;            
             // Store original position
             wordEl.dataset.originalLeft = left;
             wordEl.dataset.originalTop = top;
