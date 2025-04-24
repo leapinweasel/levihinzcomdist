@@ -1,283 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Levi Hinz - Software Engineer</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 600px;
-            padding: 2rem;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 100px 20px 20px 20px;
+        min-height: 100vh;
+        text-align: center;
+        line-height: 1.6;
+      }
 
-        span.name {
-            color: #01b1f7
-        }
+      .container {
+        max-width: 600px;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
 
-        p {
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-        
-        .contact {
-            font-style: italic;
-            color: #7f8c8d;
-        }
-        
-        .social-links {
-            margin-top: 2rem;
-        }
-        
-        .social-links a {
-            margin: 0 10px;
-            color: #3498db;
-            text-decoration: none;
-        }
+      /* class for fade-in effect 2s */
+      .fade-in-fast {
+        opacity: 1;
+        animation-name: fadeInOpacity;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in;
+        animation-duration: 0.2s;
+      }
+      /* class for fade-in effect 2s */
+      .fade-in-med {
+        opacity: 1;
+        animation-name: fadeInOpacity;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in;
+        animation-duration: 0.6s;
+      }
 
-        #word-cloud-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            perspective: 1000px;
+      @keyframes fadeInOpacity {
+        0% {
+          opacity: 0;
         }
-
-        .word {
-            position: absolute;
-            color: rgba(0, 0, 0, 0.6);
-            transition: transform 0.3s ease-out;
-            cursor: default;
-            user-select: none;
+        100% {
+          opacity: 1;
         }
+      }
 
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 1rem;
+      }
+
+      span.name {
+        color: #01b1f7;
+      }
+
+      p {
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+      }
+
+      .contact {
+        font-style: italic;
+        color: #7f8c8d;
+      }
+
+      .social-links {
+        margin-top: 2rem;
+      }
+
+      .social-links a {
+        margin: 0 10px;
+        color: #3498db;
+        text-decoration: none;
+      }
+
+      #word-cloud-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        perspective: 1000px;
+      }
+
+      .word {
+        position: absolute;
+        color: rgba(0, 0, 0, 0.6);
+        transition: transform 0.3s ease-out;
+        cursor: default;
+        user-select: none;
+      }
     </style>
-</head>
-<body>
-    <div id="word-cloud-container"></div>
-    <div class="container">
-        <h1>Hi, I'm <span class="name">Levi Hinz</span></h1>
-        <h2>Maximo - Web Development - Backend Development</h2>
-        
-        <p>I have 20 years experience in Maximo development, with forays into Angular, Node, Scripting, Container orchestration, devtools and more.</p>
-            
-        <p>This portfolio website will be launching soon to showcase my work and skills.</p>
-        
-        <p>In the meantime, feel free to reach out if you'd like to discuss potential projects or collaborations.</p>
-        
-        <div class="contact">
-            <p>Email: levihinz@hotmail.com<br>
-        </div>
-        
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/levihinz/" target="_blank">LinkedIn</a>
-        </div>
+  </head>
+  <body>
+    <div class="fade-in-fast" id="word-cloud-container"></div>
+
+    <div class="container fade-in-med">
+      <h1>Hi, I'm <span class="name">Levi Hinz</span></h1>
+      <h2>Maximo - Web Development - Backend Development</h2>
+
+      <p>
+        I have 20 years experience in Maximo development, with forays into
+        Angular, Node, Scripting, Container orchestration, devtools and more.
+      </p>
+
+      <p>
+        This portfolio website will be launching soon to showcase my work and
+        skills.
+      </p>
+
+      <p>
+        In the meantime, feel free to reach out if you'd like to discuss
+        potential projects or collaborations.
+      </p>
+
+      <div class="contact">
+        <p>Email: levihinz@hotmail.com<br /></p>
+      </div>
+
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/levihinz/" target="_blank"
+          >LinkedIn</a
+        >
+      </div>
     </div>
 
-
     <script>
-        // Word cloud configuration
-        const config = {
-            words: [
-                "Maximo", "Java", "Docker", "Javascript", //
-                "Angular", "Node", "Jenkins", "MAS", //
-                "MIF", "Automation", "Hosting", "WebSphere",
-                "Deployment", "AWS", "Kubernetes", "DB2"
-            ],
-            minFontSize: 24,
-            maxFontSize: 52,
-            maxOffset: 50, // Maximum movement distance from mouse
-            rotationRange: 15 // Degrees of rotation possible
-        };
+      // Word cloud configuration
+      const config = {
+        words: [
+          "Maximo",
+          "Java",
+          "Docker",
+          "Javascript", //
+          "Angular",
+          "Node",
+          "Jenkins",
+          "MAS", //
+          "MIF",
+          "Automation",
+          "Hosting",
+          "WebSphere",
+          "Deployment",
+          "AWS",
+          "Kubernetes",
+          "DB2",
+        ],
+        minFontSize: 24,
+        maxFontSize: 52,
+        maxOffset: 50, // Maximum movement distance from mouse
+        rotationRange: 15, // Degrees of rotation possible
+      };
 
-        // Randomize the word array
-        config.words = config.words.sort(() => {
-            return 0.5 - Math.random();
+      // Randomize the word array
+      config.words = config.words.sort(() => {
+        return 0.5 - Math.random();
+      });
+
+      // Manually defined grid-like positions (percentages)
+      const predefinedPositions = [
+        // Row 1
+        [0.0, 0.0],
+        [0.25, 0.0],
+        [0.5, 0.0],
+        [0.75, 0.0],
+
+        // Row 2
+        [0.0, 0.25],
+        [0.25, 0.25],
+        [0.5, 0.25],
+        [0.75, 0.25],
+
+        // Row 3
+        [0.0, 0.5],
+        [0.25, 0.5],
+        [0.5, 0.5],
+        [0.75, 0.5],
+
+        // Row 4
+        [0.0, 0.75],
+        [0.25, 0.75],
+        [0.5, 0.75],
+        [0.75, 0.75],
+      ];
+
+      const container = document.getElementById("word-cloud-container");
+      var centerX = window.innerWidth / 2;
+      var centerY = window.innerHeight / 2;
+
+      // Calculate responsive position with min-width of 500px
+      function getResponsivePosition(percentX, percentY) {
+        const minWidth = 500;
+        const effectiveWidth = Math.max(window.innerWidth, minWidth);
+        const posX = percentX * effectiveWidth;
+        const posY = percentY * window.innerHeight;
+        return [posX, posY];
+      }
+
+      // Create word elements
+      config.words.forEach((word, index) => {
+        if (index >= predefinedPositions.length) return;
+
+        const wordEl = document.createElement("div");
+        wordEl.className = "word";
+        wordEl.textContent = word;
+
+        // Get base position from grid
+        const [baseLeft, baseTop] = getResponsivePosition(
+          predefinedPositions[index][0],
+          predefinedPositions[index][1]
+        );
+
+        // Apply base position with small random offset
+        let left = baseLeft + 100 + (Math.floor(Math.random() * 20) - 10);
+        let top = baseTop + 100 + (Math.floor(Math.random() * 20) - 10);
+
+        // Random font size and weight
+        const fontSize =
+          Math.floor(
+            Math.random() * (config.maxFontSize - config.minFontSize + 1)
+          ) + config.minFontSize;
+        const fontWeight =
+          fontSize > config.maxFontSize * 0.7
+            ? 600
+            : fontSize > config.maxFontSize * 0.4
+            ? 400
+            : 300;
+
+        // Random slight rotation
+        const rotation =
+          Math.random() * config.rotationRange * 2 - config.rotationRange;
+
+        wordEl.style.left = `${left}px`;
+        wordEl.style.top = `${top}px`;
+        wordEl.style.fontSize = `${fontSize}px`;
+        wordEl.style.fontWeight = fontWeight;
+        wordEl.style.color = `hsla(0, 0%, 70%, 20)`;
+
+        // Store positions for responsive updates
+        wordEl.dataset.originalLeft = left;
+        wordEl.dataset.originalTop = top;
+        wordEl.dataset.baseLeft = baseLeft;
+        wordEl.dataset.baseTop = baseTop;
+        wordEl.dataset.positionIndex = index;
+
+        container.appendChild(wordEl);
+      });
+
+      // Mouse move interaction
+      document.addEventListener("mousemove", (e) => {
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        // Calculate direction from center
+        const dirX = mouseX - centerX;
+        const dirY = mouseY - centerY;
+
+        // Normalize direction
+        const distanceFromCenter = Math.sqrt(dirX * dirX + dirY * dirY);
+        const normX = distanceFromCenter > 0 ? dirX / distanceFromCenter : 0;
+        const normY = distanceFromCenter > 0 ? dirY / distanceFromCenter : 0;
+
+        // Move each word based on mouse position
+        const words = document.querySelectorAll(".word");
+        words.forEach((word) => {
+          let originalLeft = parseFloat(word.dataset.originalLeft);
+          let originalTop = parseFloat(word.dataset.originalTop);
+
+          // Calculate distance from mouse to word
+          const wordX = originalLeft + window.scrollX;
+          const wordY = originalTop + window.scrollY;
+          const distX = mouseX - wordX;
+          const distY = mouseY - wordY;
+          const distance = Math.sqrt(distX * distX + distY * distY);
+
+          // Calculate movement (words move away from mouse)
+          const moveFactor = Math.min(
+            config.maxOffset,
+            15000 / (distance + 100)
+          );
+
+          // New position (original position minus movement in mouse direction)
+          const newX = originalLeft - normX * moveFactor * 0.7;
+          const newY = originalTop - normY * moveFactor * 0.7;
+
+          // Calculate scale effect (words slightly shrink when mouse is near)
+          const scale = distance < 150 ? Math.max(0.9, distance / 150) : 1;
+
+          // Apply transformations
+          word.style.transform = `translate(${newX - originalLeft}px, ${
+            newY - originalTop
+          }px) rotate(${
+            word.style.transform.match(/rotate\(([^)]+)\)/)?.[1] || "0deg"
+          }) scale(${scale})`;
         });
+      });
 
-        // Manually defined grid-like positions (percentages)
-        const predefinedPositions = [
-            // Row 1
-            [0.0, 0.0],
-            [0.25, 0.0],
-            [0.5, 0.0],
-            [0.75, 0.0],
-            
-            // Row 2
-            [0.0, 0.25],
-            [0.25, 0.25],
-            [0.5, 0.25],
-            [0.75, 0.25],
-            
-            // Row 3
-            [0.0, 0.5],
-            [0.25, 0.5],
-            [0.5, 0.5],
-            [0.75, 0.5],
-            
-            // Row 4
-            [0.0, 0.75],
-            [0.25, 0.75],
-            [0.5, 0.75],
-            [0.75, 0.75]
-        ];
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        centerX = window.innerWidth / 2;
+        centerY = window.innerHeight / 2;
 
-        const container = document.getElementById('word-cloud-container');
-        var centerX = window.innerWidth / 2;
-        var centerY = window.innerHeight / 2;
-        
-        // Calculate responsive position with min-width of 500px
-        function getResponsivePosition(percentX, percentY) {
-            const minWidth = 500;
-            const effectiveWidth = Math.max(window.innerWidth, minWidth);
-            const posX = percentX * effectiveWidth;
-            const posY = percentY * window.innerHeight;
-            return [posX, posY];
-        }
-
-        // Create word elements
-        config.words.forEach((word, index) => {
-            if (index >= predefinedPositions.length) return;
-            
-            const wordEl = document.createElement('div');
-            wordEl.className = 'word';
-            wordEl.textContent = word;
-            
-            // Get base position from grid
+        // Update word positions
+        const words = document.querySelectorAll(".word");
+        words.forEach((word) => {
+          if (word.dataset.positionIndex !== undefined) {
+            const index = parseInt(word.dataset.positionIndex);
             const [baseLeft, baseTop] = getResponsivePosition(
-                predefinedPositions[index][0], 
-                predefinedPositions[index][1]
+              predefinedPositions[index][0],
+              predefinedPositions[index][1]
             );
-            
-            // Apply base position with small random offset
-            let left = baseLeft + 100 + (Math.floor(Math.random() * 20) - 10);
-            let top = baseTop + 100 + (Math.floor(Math.random() * 20) - 10);
-            
-            // Random font size and weight
-            const fontSize = Math.floor(Math.random() * (config.maxFontSize - config.minFontSize + 1)) + config.minFontSize;
-            const fontWeight = fontSize > config.maxFontSize * 0.7 ? 600 : (fontSize > config.maxFontSize * 0.4 ? 400 : 300);
-            
-            // Random slight rotation
-            const rotation = (Math.random() * config.rotationRange * 2) - config.rotationRange;
-            
-            wordEl.style.left = `${left}px`;
-            wordEl.style.top = `${top}px`;
-            wordEl.style.fontSize = `${fontSize}px`;
-            wordEl.style.fontWeight = fontWeight;
-            wordEl.style.color = `hsla(0, 0%, 70%, 20)`;
-            
-            // Store positions for responsive updates
-            wordEl.dataset.originalLeft = left;
-            wordEl.dataset.originalTop = top;
-            wordEl.dataset.baseLeft = baseLeft;
-            wordEl.dataset.baseTop = baseTop;
-            wordEl.dataset.positionIndex = index;
-            
-            container.appendChild(wordEl);
+
+            // Calculate new position maintaining the original random offset
+            const offsetX =
+              parseFloat(word.dataset.originalLeft) -
+              parseFloat(word.dataset.baseLeft);
+            const offsetY =
+              parseFloat(word.dataset.originalTop) -
+              parseFloat(word.dataset.baseTop);
+
+            const newLeft = baseLeft + offsetX;
+            const newTop = baseTop + offsetY;
+
+            word.style.left = `${newLeft}px`;
+            word.style.top = `${newTop}px`;
+            word.dataset.originalLeft = newLeft;
+            word.dataset.originalTop = newTop;
+            word.dataset.baseLeft = baseLeft;
+            word.dataset.baseTop = baseTop;
+          }
         });
-        
-        // Mouse move interaction
-        document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-            
-            // Calculate direction from center
-            const dirX = mouseX - centerX;
-            const dirY = mouseY - centerY;
-            
-            // Normalize direction
-            const distanceFromCenter = Math.sqrt(dirX * dirX + dirY * dirY);
-            const normX = distanceFromCenter > 0 ? dirX / distanceFromCenter : 0;
-            const normY = distanceFromCenter > 0 ? dirY / distanceFromCenter : 0;
-            
-            // Move each word based on mouse position
-            const words = document.querySelectorAll('.word');
-            words.forEach(word => {
-                let originalLeft = parseFloat(word.dataset.originalLeft);
-                let originalTop = parseFloat(word.dataset.originalTop);
-                
-                // Calculate distance from mouse to word
-                const wordX = originalLeft + window.scrollX;
-                const wordY = originalTop + window.scrollY;
-                const distX = mouseX - wordX;
-                const distY = mouseY - wordY;
-                const distance = Math.sqrt(distX * distX + distY * distY);
-                
-                // Calculate movement (words move away from mouse)
-                const moveFactor = Math.min(config.maxOffset, 15000 / (distance + 100));
-                
-                // New position (original position minus movement in mouse direction)
-                const newX = originalLeft - normX * moveFactor * 0.7;
-                const newY = originalTop - normY * moveFactor * 0.7;
-                
-                // Calculate scale effect (words slightly shrink when mouse is near)
-                const scale = distance < 150 ? Math.max(0.9, distance/150) : 1;
-                
-                // Apply transformations
-                word.style.transform = `translate(${newX - originalLeft}px, ${newY - originalTop}px) rotate(${word.style.transform.match(/rotate\(([^)]+)\)/)?.[1] || '0deg'}) scale(${scale})`;
-            });
-        });
-        
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            centerX = window.innerWidth / 2;
-            centerY = window.innerHeight / 2;
-            
-            // Update word positions
-            const words = document.querySelectorAll('.word');
-            words.forEach(word => {
-                if (word.dataset.positionIndex !== undefined) {
-                    const index = parseInt(word.dataset.positionIndex);
-                    const [baseLeft, baseTop] = getResponsivePosition(
-                        predefinedPositions[index][0], 
-                        predefinedPositions[index][1]
-                    );
-                    
-                    // Calculate new position maintaining the original random offset
-                    const offsetX = parseFloat(word.dataset.originalLeft) - parseFloat(word.dataset.baseLeft);
-                    const offsetY = parseFloat(word.dataset.originalTop) - parseFloat(word.dataset.baseTop);
-                    
-                    const newLeft = baseLeft + offsetX;
-                    const newTop = baseTop + offsetY;
-                    
-                    word.style.left = `${newLeft}px`;
-                    word.style.top = `${newTop}px`;
-                    word.dataset.originalLeft = newLeft;
-                    word.dataset.originalTop = newTop;
-                    word.dataset.baseLeft = baseLeft;
-                    word.dataset.baseTop = baseTop;
-                }
-            });
-            
-            // Trigger mousemove to update positions
-            document.dispatchEvent(new Event('mousemove'));
-        });
+
+        // Trigger mousemove to update positions
+        document.dispatchEvent(new Event("mousemove"));
+      });
     </script>
-</body>
+  </body>
 </html>
